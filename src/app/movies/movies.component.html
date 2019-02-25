@@ -1,0 +1,17 @@
+<ul class="movies">
+  <li *ngFor="let movie of movies">
+      <div class="panel panel-primary panel-rounded">
+        <div class="row">
+          <div class="col-sm-3">
+            <span>Poster:Test</span>
+          </div>
+          <div class="col-sm-9">
+            <h1>{{movie.Title}}</h1>
+            <div><span>Year: {{movie.Year}}</span></div>
+            <div><span>{{movie.plot}}</span></div>
+            <button class="btn btn-warning" >View on IMDB</button>
+          </div>
+        </div>
+      </div>
+  </li>
+</ul>
