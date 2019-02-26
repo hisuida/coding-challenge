@@ -4,5 +4,19 @@
         :hover {
             background-color: #DDD;
         }
+        img {
+            width: 200px;
+            border-radius: 10px;
+        }
+        h2 {
+            margin-top: -0.2em;
+        }
+        hr {
+            margin-top: -0.2em;
+            border: none;
+            height: 1px;
+            color: #616161;
+            background-color: #616161;
+        }
     }
 }

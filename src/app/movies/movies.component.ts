@@ -10,7 +10,10 @@ import { MovieService } from '../movie.service';
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[];
-  constructor(private movieService: MovieService) { }
+  selectedMovie: Movie;
+  constructor(private movieService: MovieService) {
+    this.movies = [];
+   }
 
   ngOnInit() {
     this.getMovies();
@@ -18,7 +21,20 @@ export class MoviesComponent implements OnInit {
 
   getMovies(): void {
     this.movieService.getMovies()
-        .subscribe(movies => this.movies = movies);
+        .subscribe((movies: any[]) => {
+          movies.forEach(movie => {
+            this.movieService.getMovieDetails(movie.ImdbID).subscribe((movieDetails: Movie) => {
+              movie.Plot = movieDetails.Plot;
+              movie.Rated = movieDetails.Rated;
+              movie.Released = movieDetails.Released;
+              movie.Runtime = movieDetails.Runtime;
+            });
+            let localPosterUrl = (movie.PosterUrl).split("https://m.media-amazon.com/images/M/")[1];
+            movie.PosterUrl = 'assets/img/'+localPosterUrl;
+            movie.ImdbUrl = 'https://www.imdb.com/title/tt8108200' + movie.ImdbID;
+          });
+          this.movies = movies
+        });
   }
 
 }

@@ -3,13 +3,14 @@
       <div class="panel panel-primary panel-rounded">
         <div class="row">
           <div class="col-sm-3">
-            <span>Poster:Test</span>
+            <span><img src={{movie.PosterUrl}}></span>
           </div>
           <div class="col-sm-9">
-            <h1>{{movie.Title}}</h1>
-            <div><span>Year: {{movie.Year}}</span></div>
-            <div><span>{{movie.plot}}</span></div>
-            <button class="btn btn-warning" >View on IMDB</button>
+            <h2>{{movie.Title}}</h2>
+            <hr>
+            <div><span>{{movie.Released}}</span></div>
+            <div><span>{{movie.Plot}}</span></div>
+            <a href={{movie.ImdbUrl}}><button class="btn btn-warning">View on IMDB</button></a>
           </div>
         </div>
       </div>

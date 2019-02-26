@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Movie } from './movie';
+import { Movie, MovieAdapter } from './movie';
 import { MessageService } from './message.service';
 
 const httpOptions = {
@@ -22,8 +22,9 @@ export class MovieService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) {
-   }
+    private messageService: MessageService,
+    private adapter: MovieAdapter
+    ) { }
 
   getMovies(): Observable<Movie[]> {
     this.messageService.add('MovieService: Fetched Movies');
@@ -31,8 +32,7 @@ export class MovieService {
     return this.http
     .get<Movie[]>(this.baseUrl + batmanSearchQuery + this.apiKeyQuery)
     .pipe(
-      tap(_=> this.log('fetched movies')),
-      map((res) => res['Search'] || []),
+      map((data: any[]) => data['Search'].map(item => this.adapter.adapt(item))),
       catchError(this.handleError('getMovies', []))
     );
   }
