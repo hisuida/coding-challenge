@@ -2,8 +2,9 @@
 @import './mixins';
 
 body {
-    font: 100% $font-stack;
     color: $primary-color;
+    font: 100% $font-stack;
+    margin-bottom: 6em;
     main {
         padding-top: 5em;
         padding-bottom: 1em;
@@ -16,37 +17,21 @@ body {
     }
 }
 
-.panel-rounded {
+.card-rounded {
+    background: $card-background-color;
     border-radius: 10px;
-    background: $panel-background-color;
     border: 2px solid $primary-color;
+    margin: 2em 2em;
     padding: 1em;
     width: 100%;
     h2 {
-        font-weight: bold;
         color: $title-color;
-    }
-    hr {
-        color: gray;
+        font-weight: bold;
     }
 }
 
 footer {
     bottom: 0;
+    height: 120px;
     width: 100%;
-    background-color: #bebdbd;
-    padding: 0.5em;
-    h5{
-        font-weight: 200;
-        color: gray;
-    }
-    h6 {
-        font-weight: 100;
-        text-align: center;
-        color: lightslategrey;
-    }
-    button.clear {
-        float: right;
-        font-size: 0.8em;
-    }
 }

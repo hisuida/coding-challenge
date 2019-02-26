@@ -39,7 +39,8 @@ export class MovieService {
   }
 
   getMovieDetails(imdbID): Observable<MovieDetails> {
-    const url = `${this.baseUrl}i=${imdbID}${this.apiKeyQuery}`
+    const fullPlotQuery = '&plot=full';
+    const url = `${this.baseUrl}i=${imdbID}${fullPlotQuery}${this.apiKeyQuery}`;
     return this.http.get<MovieDetails>(url).pipe(
       tap(_ => this.log(`Fetched Movie with imdb ID = ${imdbID}`)),
       catchError(this.handleError<MovieDetails>(`get movie details for imdb ID = ${imdbID}`))

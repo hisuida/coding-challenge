@@ -2,7 +2,16 @@
     li {
         position: relative;
         :hover {
-            background-color: #DDD;
+            background-color: #d1daf9;
+        }
+        .btn-imdb {
+            background-color: #ffc107;
+            float: right;
+            font-weight: bold;
+            color: gray;
+            &:hover {
+                color: black;
+            }
         }
         .btn-rating {
             border-color: #616161;
@@ -18,15 +27,21 @@
             margin-top: -0.2em;
         }
         hr {
-            margin-top: -0.2em;
-            border: none;
-            height: 1px;
-            color: #616161;
             background-color: #616161;
+            border: none;
+            color: #616161;
+            height: 1px;
+            margin-top: -0.2em;
+            &:hover {
+                background-color: #616161;
+                color: #616161;
+            };
         }
         img {
-            width: 200px;
             border-radius: 10px;
+            height: 300px;
+            object-fit: cover;
+            width: 200px;
         }
     }
 }

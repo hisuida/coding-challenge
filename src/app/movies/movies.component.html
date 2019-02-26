@@ -1,6 +1,6 @@
 <ul class="movies">
   <li *ngFor="let movie of movies">
-      <div class="panel panel-primary panel-rounded">
+      <div class="card card-rounded">
         <div class="row">
           <div class="col-sm-3">
             <span><img src={{movie.PosterUrl}}></span>
@@ -22,7 +22,7 @@
             <br>
             <div><span>{{movie.movieDetails.Plot}}</span></div>
             <br>
-            <a href={{movie.ImdbUrl}}><button class="btn btn-warning">View on IMDB</button></a>
+            <a href={{movie.ImdbUrl}}><button class="btn btn-warning btn-imdb">View on IMDB</button></a>
           </div>
         </div>
       </div>
