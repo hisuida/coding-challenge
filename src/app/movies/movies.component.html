@@ -8,11 +8,24 @@
           <div class="col-sm-9">
             <h2>{{movie.Title}}</h2>
             <hr>
-            <div><span>{{movie.Released}}</span></div>
-            <div><span>{{movie.Plot}}</span></div>
+            <div class="row">
+              <div class="col-sm-2">
+                <span><button class="btn btn-default btn-rating">{{movie.movieDetails.Rated}}</button></span>
+              </div>
+              <div class="col-sm-8">
+                <span>{{movie.movieDetails.Runtime}}</span>
+              </div>
+              <div class="col-sm-2">
+                <span>{{movie.movieDetails.Released}}</span>
+              </div>
+            </div>
+            <br>
+            <div><span>{{movie.movieDetails.Plot}}</span></div>
+            <br>
             <a href={{movie.ImdbUrl}}><button class="btn btn-warning">View on IMDB</button></a>
           </div>
         </div>
       </div>
   </li>
+  <br>
 </ul>

@@ -4,9 +4,15 @@
         :hover {
             background-color: #DDD;
         }
-        img {
-            width: 200px;
-            border-radius: 10px;
+        .btn-rating {
+            border-color: #616161;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: default;
+            height: 1.7em;
+            padding: 1px 12px 4px 12px;
+            color: #616161;
+            font-weight: 200;
+            margin-top: -0.3em;
         }
         h2 {
             margin-top: -0.2em;
@@ -17,6 +23,10 @@
             height: 1px;
             color: #616161;
             background-color: #616161;
+        }
+        img {
+            width: 200px;
+            border-radius: 10px;
         }
     }
 }

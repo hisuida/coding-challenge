@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '../movie';
+import { Movie, MovieDetails } from '../movie';
 import { MovieService } from '../movie.service';
-
 
 @Component({
   selector: 'app-movies',
@@ -10,7 +9,6 @@ import { MovieService } from '../movie.service';
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[];
-  selectedMovie: Movie;
   constructor(private movieService: MovieService) {
     this.movies = [];
    }
@@ -21,20 +19,28 @@ export class MoviesComponent implements OnInit {
 
   getMovies(): void {
     this.movieService.getMovies()
-        .subscribe((movies: any[]) => {
-          movies.forEach(movie => {
-            this.movieService.getMovieDetails(movie.ImdbID).subscribe((movieDetails: Movie) => {
-              movie.Plot = movieDetails.Plot;
-              movie.Rated = movieDetails.Rated;
-              movie.Released = movieDetails.Released;
-              movie.Runtime = movieDetails.Runtime;
-            });
-            let localPosterUrl = (movie.PosterUrl).split("https://m.media-amazon.com/images/M/")[1];
-            movie.PosterUrl = 'assets/img/'+localPosterUrl;
-            movie.ImdbUrl = 'https://www.imdb.com/title/tt8108200' + movie.ImdbID;
-          });
-          this.movies = movies
-        });
+    .subscribe(movies => {
+      this.movies = movies;
+      if(this.movies && this.movies.length) {
+        this.getMovieDetails(this.movies);
+      }
+    });
   }
 
+  getMovieDetails(movies): void {
+    movies.forEach((movie) => {
+      let imdbID = movie.ImdbID;
+      this.movieService.getMovieDetails(imdbID).subscribe(
+        movieDetails => {
+          movie.movieDetails.Plot = movieDetails.Plot;
+          movie.movieDetails.Released = movieDetails.Released;
+          movie.movieDetails.Rated = movieDetails.Rated;
+          movie.movieDetails.Runtime = movieDetails.Runtime;
+        }
+      )
+      let localPosterUrl = (movie.PosterUrl).split("https://m.media-amazon.com/images/M/")[1];
+      movie.PosterUrl = `assets/img/${localPosterUrl}`;
+      movie.ImdbUrl = `https://www.imdb.com/title/${imdbID}`;
+    })
+  }
 }
