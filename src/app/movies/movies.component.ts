@@ -13,9 +13,15 @@ export class MoviesComponent implements OnInit {
   movies: Movie[];
   filteredMovies: Movie[];
   filters = {};
+  filterModels = [];
 
   constructor(private movieService: MovieService) {
     this.movies = [];
+    this.filterModels = [
+      {name: 'Show All', value: 'none'},
+      {name: `2000's`, value: '2000'},
+      {name: `1900's`, value: '1900'}
+    ];
    }
 
   ngOnInit() {
@@ -26,13 +32,15 @@ export class MoviesComponent implements OnInit {
     this.filteredMovies = _.filter(this.movies, _.conforms(this.filters));
   }
 
-  filterByYear(event) {
-    debugger;
-    // if (rule === '2000') {
-    //   this.filters['Year'] = val => Number(val) >= 2000;
-    // } else {
-    //   this.filters['Year'] = val => Number(val) < 2000;
-    // }
+  filterByYear(filterModel) {
+    console.log(filterModel.value);
+    if (filterModel.value === 'none') {
+      this.removeFilter('Year');
+    } else if (filterModel.value === '2000') {
+      this.filters['Year'] = val => Number(val) >= 2000;
+    } else {
+      this.filters['Year'] = val => Number(val) < 2000;
+    }
     this.applyFilters();
   }
 
@@ -63,6 +71,7 @@ export class MoviesComponent implements OnInit {
       movie.imdbUrl = `https://www.imdb.com/title/${imdbID}`;
     });
   }
+
 
   removeFilter(property: string) {
     delete this.filters[property];

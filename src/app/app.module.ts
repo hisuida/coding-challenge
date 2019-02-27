@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
@@ -18,7 +18,7 @@ import { MessagesComponent } from './messages/messages.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    JwBootstrapSwitchNg2Module
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
