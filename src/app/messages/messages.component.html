@@ -1,4 +1,4 @@
-<footer class="fixed-bottom">
+<footer class="fixed-bottom" *ngIf="messageService.messages.length">
 	<div class="card">
 		<div class="card-header">
 			<button class="btn btn-secondary clear"
@@ -6,7 +6,7 @@
 			<h5>Messages</h5>
 		</div>
 		<div class="card-block">
-			<div  *ngIf="messageService.messages.length">
+			<div *ngIf="messageService.messages.length">
 				<div *ngFor='let message of messageService.messages'>
 					<h6>{{message}}</h6>
 				</div>

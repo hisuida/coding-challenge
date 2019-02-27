@@ -42,7 +42,7 @@ export class MovieService {
     const fullPlotQuery = '&plot=full';
     const url = `${this.baseUrl}i=${imdbID}${fullPlotQuery}${this.apiKeyQuery}`;
     return this.http.get<MovieDetails>(url).pipe(
-      tap(_ => this.log(`Fetched Movie with imdb ID = ${imdbID}`)),
+      tap(_ => this.log(`Fetched details for Movie with imdb ID = ${imdbID}`)),
       catchError(this.handleError<MovieDetails>(`get movie details for imdb ID = ${imdbID}`))
     );
   }
