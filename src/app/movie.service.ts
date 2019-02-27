@@ -7,10 +7,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Movie, MovieAdapter, MovieDetails } from './movie';
 import { MessageService } from './message.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json' })
-};
 
 @Injectable({
   providedIn: 'root'

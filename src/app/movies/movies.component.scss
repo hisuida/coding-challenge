@@ -19,10 +19,11 @@
 .movies {
     li {
         .card {
-            margin: 2em auto; /* Added */
-            float: none; /* Added */
-            .movie-details {
+            margin: 2em auto;
+            float: none;
+            .movie-plot {
                 padding-right: 2em;
+                margin-bottom: 1em;
                 text-align: justify;
             }
         }
@@ -45,13 +46,18 @@
         }
         .btn-rating {
             border-color: #616161;
-            font-family: 'Courier New', Courier, monospace;
+            color: #616161;
             cursor: default;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 200;
             height: 1.7em;
             padding: 1px 12px 4px 12px;
-            color: #616161;
-            font-weight: 200;
             margin-top: -0.3em;
+        }
+        .details-row {
+            mat-card {
+                padding-top: 0;
+            }
         }
         h2 {
             margin-top: -0.2em;
