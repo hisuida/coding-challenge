@@ -7,6 +7,7 @@ export class Movie {
         public ImdbID: string,
         public ImdbUrl: string,
         public PosterUrl: string,
+        public Year: string,
         public movieDetails: MovieDetails
     ) {}
 
@@ -14,7 +15,7 @@ export class Movie {
 
 export class MovieDetails {
     constructor(
-        public Plot: string,        
+        public Plot: string,
         public Released: string,
         public Rated: string,
         public Runtime: string,
@@ -30,9 +31,10 @@ export class MovieAdapter implements Adapter<Movie> {
   adapt(item: any): Movie {
     return new Movie(
       item.Title,
-      item.imdbID,
-      item.imdbUrl,
+      item.ImdbID,
+      item.ImdbUrl,
       item.Poster,
+      item.Year,
       new MovieDetails(
           item.Plot,
           item.Released,

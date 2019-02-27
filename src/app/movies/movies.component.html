@@ -1,3 +1,5 @@
+<button [(ngModel)] ="movie" (click)="filterByRule('year', '2000', 'greater')">2000s</button>
+<button [(ngModel)] ="movie" (click)="filterByRule('year', '1999', 'less')">1900s</button>
 <ul class="movies">
   <li *ngFor="let movie of movies">
       <div class="card card-rounded">
