@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 export class MoviesComponent implements OnInit {
   movies: Movie[];
   filteredMovies: Movie[];
-  year: string;
+  Year: string;
   filters = {};
 
   constructor(private movieService: MovieService) {
@@ -41,14 +41,14 @@ export class MoviesComponent implements OnInit {
       this.movies = movies;
       if (this.movies && this.movies.length) {
         this.getMovieDetails(this.movies);
-        this.applyFilters();
       }
+      this.applyFilters();
     });
   }
 
   getMovieDetails(movies): void {
     movies.forEach((movie) => {
-      const imdbID = movie.ImdbID;
+      const imdbID = movie.imdbID;
       this.movieService.getMovieDetails(imdbID).subscribe(
         movieDetails => {
           movie.movieDetails.Plot = movieDetails.Plot;
@@ -59,7 +59,7 @@ export class MoviesComponent implements OnInit {
       );
       const localPosterUrl = (movie.PosterUrl).split('https://m.media-amazon.com/images/M/')[1];
       movie.PosterUrl = `assets/img/${localPosterUrl}`;
-      movie.ImdbUrl = `https://www.imdb.com/title/${imdbID}`;
+      movie.imdbUrl = `https://www.imdb.com/title/${imdbID}`;
     });
   }
 
