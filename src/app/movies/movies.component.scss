@@ -1,6 +1,22 @@
+
+
+.btn-filter.active {
+    background-color: #7b7bff;
+    color: white;
+}
+.btn-filter {
+    background-color: #eceffc;
+    float: right;
+    font-weight: bold;
+    color: gray;
+    margin: 2em 0em 2em 1em;
+    &:hover {
+        color: black;
+    }
+}
+
 .movies {
     li {
-        position: relative;
         :hover {
             background-color: #d1daf9;
         }

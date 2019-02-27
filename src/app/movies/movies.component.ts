@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
 import * as _ from 'lodash';
+declare var $: any;
 
 @Component({
   selector: 'app-movies',
@@ -11,7 +12,6 @@ import * as _ from 'lodash';
 export class MoviesComponent implements OnInit {
   movies: Movie[];
   filteredMovies: Movie[];
-  Year: string;
   filters = {};
 
   constructor(private movieService: MovieService) {
@@ -26,12 +26,13 @@ export class MoviesComponent implements OnInit {
     this.filteredMovies = _.filter(this.movies, _.conforms(this.filters));
   }
 
-  filterByRule(property: string, rule: any, operator: string) {
-    if (operator === 'greater') {
-      this.filters[property] = val => Number(val) >= Number(rule);
-    } else {
-      this.filters[property] = val => Number(val) < Number(rule);
-    }
+  filterByYear(event) {
+    debugger;
+    // if (rule === '2000') {
+    //   this.filters['Year'] = val => Number(val) >= 2000;
+    // } else {
+    //   this.filters['Year'] = val => Number(val) < 2000;
+    // }
     this.applyFilters();
   }
 
