@@ -6,6 +6,22 @@ export class AppPage {
   }
 
   getTitleText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('a.navbar-brand')).getText();
+  }
+
+  getMovieCards() {
+    return element.all(by.css('div.card-rounded')).count();
+  }
+
+  getShowAllButton() {
+    return element(by.id('none'));
+  }
+
+  getFilterBy2000Button() {
+    return element(by.id('2000'));
+  }
+
+  getFilterBy1900Button() {
+    return element(by.id('1900'));
   }
 }
