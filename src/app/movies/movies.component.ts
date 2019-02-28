@@ -33,13 +33,12 @@ export class MoviesComponent implements OnInit {
   }
 
   filterByYear(filterModel) {
-    console.log(filterModel.value);
     if (filterModel.value === 'none') {
       this.removeFilter('Year');
     } else if (filterModel.value === '2000') {
-      this.filters['Year'] = val => Number(val) >= 2000;
+      this.filters['Year'] = val => val.startsWith('20');
     } else {
-      this.filters['Year'] = val => Number(val) < 2000;
+      this.filters['Year'] = val => val.startsWith('19');
     }
     this.applyFilters();
   }
@@ -71,7 +70,6 @@ export class MoviesComponent implements OnInit {
       movie.imdbUrl = `https://www.imdb.com/title/${imdbID}`;
     });
   }
-
 
   removeFilter(property: string) {
     delete this.filters[property];

@@ -1,7 +1,7 @@
 
 <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
       <label ngbButtonLabel class="btn-light" *ngFor="let model of filterModels">
-          <input ngbButton type="radio" (click)="filterByYear(model)" [value]="model"> {{model.name}}
+          <input ngbButton type="radio" id="{{model.value}}" (click)="filterByYear(model)" [value]="model"> {{model.name}}
       </label>
 </div>
 <ul class="movies">
