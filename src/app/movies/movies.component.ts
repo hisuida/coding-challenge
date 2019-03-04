@@ -14,6 +14,7 @@ export class MoviesComponent implements OnInit {
   filteredMovies: Movie[];
   filters = {};
   filterModels = [];
+  movieDetailsLoaded: Promise<boolean>;
 
   constructor(private movieService: MovieService) {
     this.movies = [];
@@ -63,6 +64,7 @@ export class MoviesComponent implements OnInit {
           movie.movieDetails.Released = movieDetails.Released;
           movie.movieDetails.Rated = movieDetails.Rated;
           movie.movieDetails.Runtime = movieDetails.Runtime;
+          this.movieDetailsLoaded = Promise.resolve(true);
         }
       );
       const localPosterUrl = (movie.PosterUrl).split('https://m.media-amazon.com/images/M/')[1];
