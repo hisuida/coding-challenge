@@ -15,6 +15,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
   filters = {};
   filterModels = [];
   subscriptions = [];
+  movieDetailsLoaded: Promise<boolean>;
 
   constructor(private movieService: MovieService) {
     this.movies = [];
@@ -69,6 +70,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
           movie.movieDetails.Released = movieDetails.Released;
           movie.movieDetails.Rated = movieDetails.Rated;
           movie.movieDetails.Runtime = movieDetails.Runtime;
+          this.movieDetailsLoaded = Promise.resolve(true);
         }
       );
       this.subscriptions.push(movieDetailsSubscription);
