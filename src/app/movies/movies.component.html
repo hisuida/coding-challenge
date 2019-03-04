@@ -4,7 +4,7 @@
           <input ngbButton type="radio" id="{{model.value}}" (click)="filterByYear(model)" [value]="model"> {{model.name}}
       </label>
 </div>
-<ul class="movies">
+<ul class="movies" *ngIf="movieDetailsLoaded | async">
   <li *ngFor="let movie of filteredMovies">
       <div class="card card-rounded">
         <div class="row">
