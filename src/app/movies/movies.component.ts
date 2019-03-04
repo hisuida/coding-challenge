@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
 import * as _ from 'lodash';
@@ -9,11 +9,12 @@ declare var $: any;
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss']
 })
-export class MoviesComponent implements OnInit {
+export class MoviesComponent implements OnInit, OnDestroy {
   movies: Movie[];
   filteredMovies: Movie[];
   filters = {};
   filterModels = [];
+  subscriptions = [];
 
   constructor(private movieService: MovieService) {
     this.movies = [];
@@ -26,6 +27,10 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit() {
     this.getMovies();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   private applyFilters() {
@@ -44,7 +49,7 @@ export class MoviesComponent implements OnInit {
   }
 
   getMovies(): void {
-    this.movieService.getMovies()
+    const movieSubscription = this.movieService.getMovies()
     .subscribe(movies => {
       this.movies = movies;
       if (this.movies && this.movies.length) {
@@ -52,12 +57,13 @@ export class MoviesComponent implements OnInit {
       }
       this.applyFilters();
     });
+    this.subscriptions.push(movieSubscription);
   }
 
   getMovieDetails(movies): void {
     movies.forEach((movie) => {
       const imdbID = movie.imdbID;
-      this.movieService.getMovieDetails(imdbID).subscribe(
+      const movieDetailsSubscription = this.movieService.getMovieDetails(imdbID).subscribe(
         movieDetails => {
           movie.movieDetails.Plot = movieDetails.Plot;
           movie.movieDetails.Released = movieDetails.Released;
@@ -65,6 +71,7 @@ export class MoviesComponent implements OnInit {
           movie.movieDetails.Runtime = movieDetails.Runtime;
         }
       );
+      this.subscriptions.push(movieDetailsSubscription);
       const localPosterUrl = (movie.PosterUrl).split('https://m.media-amazon.com/images/M/')[1];
       movie.PosterUrl = `assets/img/${localPosterUrl}`;
       movie.imdbUrl = `https://www.imdb.com/title/${imdbID}`;
